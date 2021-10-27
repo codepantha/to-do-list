@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Set-up-project-with-webpack
+# To do list application
 
-A simple webpack boilerplate which can serve as a starting point in your projects
+A simple to-do list application which allows users to enter tasks and mark them as done when finished in order to boost productivity.
 
 ## Built With
 
@@ -15,7 +15,7 @@ To get a local copy up and running follow these simple example steps.
 To setup the webpack project starting template in your local, in the repo page:
 click on code (dropdown list) > Download as ZIP.
 or open terminal and go to the path you want to install project and run this command <br>
-`git clone https://github.com/Code-panther/Set-up-project-with-webpack.git`
+`git clone git@github.com:Code-panther/to-do-list.git`
 
 ### Deployment
 
