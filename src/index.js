@@ -1,28 +1,27 @@
-import _ from 'lodash';
 import './style.css';
 
 const todo = [
   {
-    description: "code for 2 hours",
+    description: 'code for 2 hours',
     completed: true,
-    index: 1
+    index: 1,
   },
   {
-    description: "workout for 30 mins",
+    description: 'workout for 30 mins',
     completed: false,
-    index: 2
+    index: 2,
   },
   {
-    description: "eat breakfast",
+    description: 'eat breakfast',
     completed: true,
-    index: 3
-  }
+    index: 3,
+  },
 ];
 
-const todoList = document.querySelector(".todo-list");
+const todoList = document.querySelector('.todo-list');
 
 const displayTodoList = () => {
-  todo.map(todoItem => {
+  todo.forEach((todoItem) => {
     todoList.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
       <form>
         <input type='checkbox' class='todo-item-checkbox' value='${todoItem.description}'>
@@ -30,8 +29,8 @@ const displayTodoList = () => {
         ${todoItem.description}
         </span>
       </form>
-    </li>`
-  })
-}
+    </li>`;
+  });
+};
 
 displayTodoList();

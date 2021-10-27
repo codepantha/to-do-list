@@ -40,7 +40,7 @@ html {
   padding: 15px;
   border: none;
   border-bottom: 1px solid #ebebeb;
-  outline: none
+  outline: none;
 }
 
 .todo-list {
@@ -69,7 +69,7 @@ html {
   letter-spacing: 1px;
 }
 
-.clear .clear-link{
+.clear .clear-link {
   text-decoration: none;
   color: #545862;
 }
