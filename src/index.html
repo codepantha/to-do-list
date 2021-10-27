@@ -7,15 +7,19 @@
 </head>
 <body>
     <div id="todo-container" class="todo-container">
-        <div class="todo-heading">
+        <div class="todo-heading d-flex">
             <p class="lead">Today's To Do</p>
+            <ion-icon class="icon" name="refresh-outline"></ion-icon>
         </div>
-        <form class="todo-form">
+        <form class="todo-form d-flex">
             <input type="text" class="todo-form-input" placeholder="Add to your list...">
+            <ion-icon class="icon" name="enter-outline"></ion-icon>
         </form>
         <ul class="todo-list"></ul>
         <p class="clear"><a class="clear-link" href="#">Clear all completed</a></p>
     </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
 

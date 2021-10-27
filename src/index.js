@@ -23,11 +23,12 @@ const todoList = document.querySelector('.todo-list');
 const displayTodoList = () => {
   todo.forEach((todoItem) => {
     todoList.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
-      <form>
+      <form class='flex'>
         <input type='checkbox' class='todo-item-checkbox' value='${todoItem.description}'>
         <span type='text' contentEditable=true class='todo-item-input' data-content=${todoItem.description}>
         ${todoItem.description}
         </span>
+        <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
       </form>
     </li>`;
   });

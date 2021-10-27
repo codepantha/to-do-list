@@ -33,6 +33,26 @@ html {
   box-shadow: 1px 6px 10px #a6a6a6;
 }
 
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  padding: 15px;
+}
+
+.flex .icon {
+  margin-left: auto;
+  padding-right: 0;
+}
+
 .todo-form-input {
   width: 100%;
   font-style: italic;
@@ -71,6 +91,11 @@ html {
 
 .clear .clear-link {
   text-decoration: none;
+  color: #545862;
+}
+
+input[type='checkbox']:checked + .todo-item-input {
+  text-decoration: line-through;
   color: #545862;
 }
 
