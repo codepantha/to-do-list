@@ -1,9 +1,10 @@
+import updateTaskState from './taskState';
 import './style.css';
 
 const todo = [
   {
     description: 'code for 2 hours',
-    completed: true,
+    completed: false,
     index: 1,
   },
   {
@@ -18,13 +19,21 @@ const todo = [
   },
 ];
 
-const todoList = document.querySelector('.todo-list');
+const todoListContainer = document.querySelector('.todo-list');
 
-const displayTodoList = () => {
+// get todoList
+const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
+
+// save todList
+const saveTodoList = (todo) => {
+  localStorage.setItem('todo-list', JSON.stringify(todo));
+};
+
+const displayTodoList = (todo) => {
   todo.forEach((todoItem) => {
-    todoList.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
+    todoListContainer.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
       <form class='flex'>
-        <input type='checkbox' class='todo-item-checkbox' value='${todoItem.description}'>
+        <input type='checkbox' class='todo-item-checkbox' ${todoItem.completed === true ? 'checked' : ''} name='todo' value='${todoItem.index}'>
         <span type='text' contentEditable=true class='todo-item-input' data-content=${todoItem.description}>
         ${todoItem.description}
         </span>
@@ -34,4 +43,23 @@ const displayTodoList = () => {
   });
 };
 
-displayTodoList();
+// if tasks exist in localStorage, fetch and display them, else save some tasks.
+if (!getTodoList()) {
+  saveTodoList(todo);
+}
+
+let savedTodoList = getTodoList();
+displayTodoList(savedTodoList);
+
+const checkboxes = document.querySelectorAll('input[name="todo"]');
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', () => {
+    savedTodoList = updateTaskState(savedTodoList, checkbox.value);
+    /* wait 3 seconds before saving to localstorage so that if
+    the user has more changes, everything gets saved at once */
+    setTimeout(() => {
+      saveTodoList(savedTodoList);
+    }, 3000);
+  });
+});

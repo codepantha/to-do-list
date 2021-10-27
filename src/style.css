@@ -22,6 +22,9 @@ html {
   font-size: 18px;
   color: #545862;
   padding: 15px;
+}
+
+.todo-heading {
   border-bottom: 1px solid #ebebeb;
 }
 
@@ -53,13 +56,16 @@ html {
   padding-right: 0;
 }
 
+.todo-form {
+  border-bottom: 1px solid #ebebeb;
+}
+
 .todo-form-input {
   width: 100%;
   font-style: italic;
   font-size: 16px;
   padding: 15px;
   border: none;
-  border-bottom: 1px solid #ebebeb;
   outline: none;
 }
 
