@@ -20,6 +20,7 @@ html {
 
 .lead {
   font-size: 18px;
+  color: #545862;
   padding: 15px;
   border-bottom: 1px solid #ebebeb;
 }
@@ -34,6 +35,8 @@ html {
 
 .todo-form-input {
   width: 100%;
+  font-style: italic;
+  font-size: 16px;
   padding: 15px;
   border: none;
   border-bottom: 1px solid #ebebeb;
@@ -61,14 +64,14 @@ html {
   text-align: center;
   padding: 23px;
   background: #f5f5f5;
-  color: #000;
+  color: #545862;
   font-size: 18px;
   letter-spacing: 1px;
 }
 
 .clear .clear-link{
   text-decoration: none;
-  color: #000;
+  color: #545862;
 }
 
 @media only screen and (min-width: 768px) {

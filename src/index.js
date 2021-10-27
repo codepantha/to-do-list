@@ -29,7 +29,6 @@ const displayTodoList = () => {
         <span type='text' contentEditable=true class='todo-item-input' data-content=${todoItem.description}>
         ${todoItem.description}
         </span>
-        <img class='img' src='img/menu.svg'>
       </form>
     </li>`
   })
