@@ -1,35 +1,20 @@
 import updateTaskState from './taskState';
+import { addTodo } from './task';
 import './style.css';
 
-const todo = [
-  {
-    description: 'code for 2 hours',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'workout for 30 mins',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'eat breakfast',
-    completed: true,
-    index: 3,
-  },
-];
+const todo = [];
 
 const todoListContainer = document.querySelector('.todo-list');
 
 // get todoList
-const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
+export const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
 
 // save todList
-const saveTodoList = (todo) => {
+export const saveTodoList = (todo) => {
   localStorage.setItem('todo-list', JSON.stringify(todo));
 };
 
-const displayTodoList = (todo) => {
+export const displayTodoList = (todo) => {
   todo.forEach((todoItem) => {
     todoListContainer.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
       <form class='flex'>
@@ -38,10 +23,22 @@ const displayTodoList = (todo) => {
         ${todoItem.description}
         </span>
         <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+        <ion-icon class='icon delete hidden' name="trash-outline"></ion-icon>
       </form>
     </li>`;
   });
 };
+
+const enterButton = document.querySelector('.enter');
+const todoFormInput = document.querySelector('.todo-form-input');
+
+todoFormInput.addEventListener('keyup', (e) => {
+  if (e.keyCode === 13) addTodo();
+})
+
+enterButton.addEventListener('click', () => {
+  addTodo();
+})
 
 // if tasks exist in localStorage, fetch and display them, else save some tasks.
 if (!getTodoList()) {
@@ -63,3 +60,6 @@ checkboxes.forEach((checkbox) => {
     }, 3000);
   });
 });
+
+// show delete icon when editing
+

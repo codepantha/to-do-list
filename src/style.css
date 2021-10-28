@@ -36,6 +36,15 @@ html {
   box-shadow: 1px 6px 10px #a6a6a6;
 }
 
+.grow {
+  width: 75%;
+  transition: width 0.3s;
+}
+
+.grow:hover {
+  width: 78%;
+}
+
 .d-flex {
   display: flex;
   align-items: center;
@@ -52,8 +61,11 @@ html {
 }
 
 .flex .icon {
-  margin-left: auto;
   padding-right: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 .todo-form {
@@ -84,6 +96,7 @@ html {
 
 .todo-item-input {
   outline: none;
+  margin-right: auto;
 }
 
 .clear {
@@ -98,6 +111,14 @@ html {
 .clear .clear-link {
   text-decoration: none;
   color: #545862;
+  text-shadow: none;
+  transition: text-decoration 0.7s, text-shadow 0.7s;
+}
+
+.clear .clear-link:hover {
+  text-shadow: 3px 4px 6px #968e8e;
+  text-decoration: underline;
+  color: #3a4a42;
 }
 
 input[type='checkbox']:checked + .todo-item-input {
@@ -106,7 +127,16 @@ input[type='checkbox']:checked + .todo-item-input {
 }
 
 @media only screen and (min-width: 768px) {
-  .todo-container {
+  .grow {
+    width: 37%;
+    transition: width 0.3s;
+  }
+
+  .grow:hover {
     width: 40%;
+  }
+
+  .todo-container {
+    width: 37%;
   }
 }
