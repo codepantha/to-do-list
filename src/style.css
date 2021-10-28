@@ -34,6 +34,7 @@ html {
   margin: 10% auto;
   border: 1px solid #ebebeb;
   box-shadow: 1px 6px 10px #a6a6a6;
+  border-radius: 7px;
 }
 
 .grow {

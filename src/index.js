@@ -1,10 +1,11 @@
 import updateTaskState from './taskState';
-import { addTodo } from './task';
+import { addTodo, editTodo, deleteTodo, clearFinishedTasks } from './task';
 import './style.css';
 
 const todo = [];
 
 const todoListContainer = document.querySelector('.todo-list');
+const clearButton = document.querySelector('.clear');
 
 // get todoList
 export const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
@@ -19,7 +20,7 @@ export const displayTodoList = (todo) => {
     todoListContainer.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
       <form class='flex'>
         <input type='checkbox' class='todo-item-checkbox' ${todoItem.completed === true ? 'checked' : ''} name='todo' value='${todoItem.index}'>
-        <span type='text' contentEditable=true class='todo-item-input' data-content=${todoItem.description}>
+        <span type='text' contentEditable=true class='todo-item-input' data-id=${todoItem.index}>
         ${todoItem.description}
         </span>
         <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
@@ -52,14 +53,47 @@ const checkboxes = document.querySelectorAll('input[name="todo"]');
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', () => {
-    savedTodoList = updateTaskState(savedTodoList, checkbox.value);
-    /* wait 3 seconds before saving to localstorage so that if
-    the user has more changes, everything gets saved at once */
-    setTimeout(() => {
-      saveTodoList(savedTodoList);
-    }, 3000);
+    savedTodoList = updateTaskState(getTodoList(), checkbox.value);
+    saveTodoList(savedTodoList);
   });
 });
 
 // show delete icon when editing
+const todoItemInputs = document.querySelectorAll('.todo-item-input');
+todoItemInputs.forEach(todoItemInput => {
+  const ellipsis = todoItemInput.nextElementSibling;
+  const deleteIcon = todoItemInput.nextElementSibling.nextElementSibling;
+  const parentLiElement = todoItemInput.parentElement.parentElement;
+
+  todoItemInput.addEventListener('focus', (e) => {
+    ellipsis.style.display = 'none';
+    deleteIcon.style.display = 'block';
+    parentLiElement.style.backgroundColor = '#f7f4a8';
+  })
+
+  todoItemInput.addEventListener('blur', (e) => {
+    setTimeout(() => {
+      ellipsis.style.display = 'block';
+      deleteIcon.style.display = 'none';
+    }, 100);
+
+    parentLiElement.style.backgroundColor = '#fff';
+  })
+
+  todoItemInput.addEventListener('input', () => {
+    const todoId = todoItemInput.dataset.id;
+    editTodo(todoId, todoItemInput);
+  });
+
+  deleteIcon.addEventListener('click', () => {
+    const todoId = todoItemInput.dataset.id;
+    deleteTodo(todoId);
+  })
+})
+
+// remove all finished todo items
+clearButton.addEventListener('click', () => {
+  clearFinishedTasks();
+  location.reload();
+})
 
