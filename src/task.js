@@ -1,7 +1,7 @@
+/* eslint-disable no-multiple-empty-lines */
 const saveTodoList = (todo) => localStorage.setItem('todo-list', JSON.stringify(todo));
 
 const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
-
 
 export const addTodo = () => {
   const todo = {

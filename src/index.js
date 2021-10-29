@@ -1,7 +1,7 @@
-import updateTaskState from './taskState.js';
+import updateTaskState from './taskState';
 import {
   addTodo, editTodo, deleteTodo, clearFinishedTasks,
-} from './task.js';
+} from './task';
 import './style.css';
 
 const todo = [];
