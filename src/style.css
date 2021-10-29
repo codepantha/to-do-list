@@ -59,6 +59,7 @@ html {
 
 .icon {
   padding: 15px;
+  cursor: pointer;
 }
 
 .flex .icon {
