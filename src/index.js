@@ -1,21 +1,20 @@
-import updateTaskState from './taskState';
-import { addTodo, editTodo, deleteTodo, clearFinishedTasks } from './task';
+import updateTaskState from './taskState.js';
+import {
+  addTodo, editTodo, deleteTodo, clearFinishedTasks,
+} from './task.js';
 import './style.css';
 
 const todo = [];
-
 const todoListContainer = document.querySelector('.todo-list');
 const clearButton = document.querySelector('.clear');
+const enterButton = document.querySelector('.enter');
+const todoFormInput = document.querySelector('.todo-form-input');
 
-// get todoList
-export const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
+const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
 
-// save todList
-export const saveTodoList = (todo) => {
-  localStorage.setItem('todo-list', JSON.stringify(todo));
-};
+const saveTodoList = (todo) => localStorage.setItem('todo-list', JSON.stringify(todo));
 
-export const displayTodoList = (todo) => {
+const displayTodoList = (todo) => {
   todo.forEach((todoItem) => {
     todoListContainer.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
       <form class='flex'>
@@ -30,18 +29,14 @@ export const displayTodoList = (todo) => {
   });
 };
 
-const enterButton = document.querySelector('.enter');
-const todoFormInput = document.querySelector('.todo-form-input');
-
 todoFormInput.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) addTodo();
-})
+});
 
 enterButton.addEventListener('click', () => {
   addTodo();
-})
+});
 
-// if tasks exist in localStorage, fetch and display them, else save some tasks.
 if (!getTodoList()) {
   saveTodoList(todo);
 }
@@ -58,27 +53,27 @@ checkboxes.forEach((checkbox) => {
   });
 });
 
-// show delete icon when editing
+// Input, Edit, Delete todo section
 const todoItemInputs = document.querySelectorAll('.todo-item-input');
-todoItemInputs.forEach(todoItemInput => {
+todoItemInputs.forEach((todoItemInput) => {
   const ellipsis = todoItemInput.nextElementSibling;
   const deleteIcon = todoItemInput.nextElementSibling.nextElementSibling;
   const parentLiElement = todoItemInput.parentElement.parentElement;
 
-  todoItemInput.addEventListener('focus', (e) => {
+  todoItemInput.addEventListener('focus', () => {
     ellipsis.style.display = 'none';
     deleteIcon.style.display = 'block';
     parentLiElement.style.backgroundColor = '#f7f4a8';
-  })
+  });
 
-  todoItemInput.addEventListener('blur', (e) => {
+  todoItemInput.addEventListener('blur', () => {
     setTimeout(() => {
       ellipsis.style.display = 'block';
       deleteIcon.style.display = 'none';
     }, 100);
 
     parentLiElement.style.backgroundColor = '#fff';
-  })
+  });
 
   todoItemInput.addEventListener('input', () => {
     const todoId = todoItemInput.dataset.id;
@@ -88,12 +83,11 @@ todoItemInputs.forEach(todoItemInput => {
   deleteIcon.addEventListener('click', () => {
     const todoId = todoItemInput.dataset.id;
     deleteTodo(todoId);
-  })
-})
+  });
+});
 
 // remove all finished todo items
 clearButton.addEventListener('click', () => {
   clearFinishedTasks();
-  location.reload();
-})
-
+  window.location.reload();
+});
