@@ -99,6 +99,8 @@ html {
 .todo-item-input {
   outline: none;
   margin-right: auto;
+  width: 80%;
+  word-wrap: break-word;
 }
 
 .clear {

@@ -29,7 +29,7 @@ const displayTodoList = (todo) => {
   });
 };
 
-todoFormInput.addEventListener('keyup', (e) => {
+todoFormInput.addEventListener('keypress', (e) => {
   if (e.keyCode === 13) addTodo();
 });
 
