@@ -25,17 +25,20 @@ export const editTodo = (todoId, todoItemInput) => {
   saveTodoList(editedTodoList);
 };
 
+const reorder = (unfinishedTodo) => {
+  return unfinishedTodo.map((todo, index) => {
+    todo.index = index + 1;
+    return todo;
+  });
+}
+
 export const deleteTodo = (id) => {
   const filteredTodo = getTodoList().filter((todo) => todo.index !== Number(id));
-  saveTodoList(filteredTodo);
+  saveTodoList(reorder(filteredTodo));
   window.location.reload();
 };
 
 export const clearFinishedTasks = () => {
-  let unfinishedTodo = getTodoList().filter((todo) => todo.completed !== true);
-  unfinishedTodo = unfinishedTodo.map((todo, index) => {
-    todo.index = index + 1;
-    return todo;
-  });
-  saveTodoList(unfinishedTodo);
+  const unfinishedTodo = getTodoList().filter((todo) => todo.completed !== true);
+  saveTodoList(reorder(unfinishedTodo));
 };

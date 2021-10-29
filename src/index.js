@@ -70,7 +70,7 @@ todoItemInputs.forEach((todoItemInput) => {
     setTimeout(() => {
       ellipsis.style.display = 'block';
       deleteIcon.style.display = 'none';
-    }, 100);
+    }, 300);
 
     parentLiElement.style.backgroundColor = '#fff';
   });
