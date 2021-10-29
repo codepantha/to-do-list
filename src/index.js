@@ -29,8 +29,8 @@ const displayTodoList = (todo) => {
   });
 };
 
-todoFormInput.addEventListener('keypress', (e) => {
-  if (e.keyCode === 13) addTodo();
+todoFormInput.addEventListener('keydown', (e) => {
+  if (e.code === 'Enter') addTodo();
 });
 
 enterButton.addEventListener('click', () => {
