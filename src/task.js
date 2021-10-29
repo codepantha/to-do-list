@@ -25,12 +25,10 @@ export const editTodo = (todoId, todoItemInput) => {
   saveTodoList(editedTodoList);
 };
 
-const reorder = (unfinishedTodo) => {
-  return unfinishedTodo.map((todo, index) => {
-    todo.index = index + 1;
-    return todo;
-  });
-}
+const reorder = (unfinishedTodo) => unfinishedTodo.map((todo, index) => {
+  todo.index = index + 1;
+  return todo;
+});
 
 export const deleteTodo = (id) => {
   const filteredTodo = getTodoList().filter((todo) => todo.index !== Number(id));
