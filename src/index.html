@@ -6,14 +6,14 @@
     <title>To Do List</title>
 </head>
 <body>
-    <div id="todo-container" class="todo-container">
+    <div id="todo-container" class="todo-container grow">
         <div class="todo-heading d-flex">
             <p class="lead">Today's To Do</p>
             <ion-icon class="icon" name="refresh-outline"></ion-icon>
         </div>
         <form class="todo-form d-flex">
-            <input type="text" class="todo-form-input" placeholder="Add to your list...">
-            <ion-icon class="icon" name="enter-outline"></ion-icon>
+            <input type="text" class="todo-form-input" placeholder="Add to your list..." autofocus>
+            <ion-icon type="submit" class="icon enter" name="enter-outline"></ion-icon>
         </form>
         <ul class="todo-list"></ul>
         <p class="clear"><a class="clear-link" href="#">Clear all completed</a></p>

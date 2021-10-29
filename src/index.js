@@ -1,49 +1,42 @@
 import updateTaskState from './taskState';
+import {
+  addTodo, editTodo, deleteTodo, clearFinishedTasks,
+} from './task';
 import './style.css';
 
-const todo = [
-  {
-    description: 'code for 2 hours',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'workout for 30 mins',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'eat breakfast',
-    completed: true,
-    index: 3,
-  },
-];
-
+const todo = [];
 const todoListContainer = document.querySelector('.todo-list');
+const clearButton = document.querySelector('.clear');
+const enterButton = document.querySelector('.enter');
+const todoFormInput = document.querySelector('.todo-form-input');
 
-// get todoList
 const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
 
-// save todList
-const saveTodoList = (todo) => {
-  localStorage.setItem('todo-list', JSON.stringify(todo));
-};
+const saveTodoList = (todo) => localStorage.setItem('todo-list', JSON.stringify(todo));
 
 const displayTodoList = (todo) => {
   todo.forEach((todoItem) => {
     todoListContainer.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
       <form class='flex'>
         <input type='checkbox' class='todo-item-checkbox' ${todoItem.completed === true ? 'checked' : ''} name='todo' value='${todoItem.index}'>
-        <span type='text' contentEditable=true class='todo-item-input' data-content=${todoItem.description}>
+        <span type='text' contentEditable=true class='todo-item-input' data-id=${todoItem.index}>
         ${todoItem.description}
         </span>
         <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+        <ion-icon class='icon delete hidden' name="trash-outline"></ion-icon>
       </form>
     </li>`;
   });
 };
 
-// if tasks exist in localStorage, fetch and display them, else save some tasks.
+todoFormInput.addEventListener('keydown', (e) => {
+  if (e.code === 'Enter') addTodo();
+});
+
+enterButton.addEventListener('click', () => {
+  addTodo();
+});
+
 if (!getTodoList()) {
   saveTodoList(todo);
 }
@@ -55,11 +48,46 @@ const checkboxes = document.querySelectorAll('input[name="todo"]');
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', () => {
-    savedTodoList = updateTaskState(savedTodoList, checkbox.value);
-    /* wait 3 seconds before saving to localstorage so that if
-    the user has more changes, everything gets saved at once */
-    setTimeout(() => {
-      saveTodoList(savedTodoList);
-    }, 3000);
+    savedTodoList = updateTaskState(getTodoList(), checkbox.value);
+    saveTodoList(savedTodoList);
   });
+});
+
+// Input, Edit, Delete todo section
+const todoItemInputs = document.querySelectorAll('.todo-item-input');
+todoItemInputs.forEach((todoItemInput) => {
+  const ellipsis = todoItemInput.nextElementSibling;
+  const deleteIcon = todoItemInput.nextElementSibling.nextElementSibling;
+  const parentLiElement = todoItemInput.parentElement.parentElement;
+
+  todoItemInput.addEventListener('focus', () => {
+    ellipsis.style.display = 'none';
+    deleteIcon.style.display = 'block';
+    parentLiElement.style.backgroundColor = '#f7f4a8';
+  });
+
+  todoItemInput.addEventListener('blur', () => {
+    setTimeout(() => {
+      ellipsis.style.display = 'block';
+      deleteIcon.style.display = 'none';
+    }, 300);
+
+    parentLiElement.style.backgroundColor = '#fff';
+  });
+
+  todoItemInput.addEventListener('input', () => {
+    const todoId = todoItemInput.dataset.id;
+    editTodo(todoId, todoItemInput);
+  });
+
+  deleteIcon.addEventListener('click', () => {
+    const todoId = todoItemInput.dataset.id;
+    deleteTodo(todoId);
+  });
+});
+
+// remove all finished todo items
+clearButton.addEventListener('click', () => {
+  clearFinishedTasks();
+  window.location.reload();
 });
