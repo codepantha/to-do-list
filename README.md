@@ -8,6 +8,10 @@ A simple to-do list application which allows users to enter tasks and mark them 
 
 - HTML, CSS, and JavaScript
 
+## Live Demo 🔗
+
+[Live Demo Link](https://codepantherr.github.io/to-do-list/dist)
+
 To get a local copy up and running follow these simple example steps.
 
 ### Setup
