@@ -2,6 +2,7 @@ import updateTaskState from './taskState';
 import {
   addTodo, editTodo, deleteTodo, clearFinishedTasks,
 } from './task';
+import { saveTodoList, getTodoList } from './functions';
 import './style.css';
 
 const todo = [];
@@ -9,10 +10,6 @@ const todoListContainer = document.querySelector('.todo-list');
 const clearButton = document.querySelector('.clear');
 const enterButton = document.querySelector('.enter');
 const todoFormInput = document.querySelector('.todo-form-input');
-
-const getTodoList = () => JSON.parse(localStorage.getItem('todo-list'));
-
-const saveTodoList = (todo) => localStorage.setItem('todo-list', JSON.stringify(todo));
 
 const displayTodoList = (todo) => {
   todo.forEach((todoItem) => {
