@@ -10,7 +10,6 @@ export const addTodo = () => {
   const savedTodoList = getTodoList();
   savedTodoList.push(todo);
   saveTodoList(savedTodoList);
-  window.location.reload();
 };
 
 export const editTodo = (todoId, todoItemInput) => {
@@ -31,7 +30,6 @@ const reorder = (unfinishedTodo) => unfinishedTodo.map((todo, index) => {
 export const deleteTodo = (id) => {
   const filteredTodo = getTodoList().filter((todo) => todo.index !== Number(id));
   saveTodoList(reorder(filteredTodo));
-  window.location.reload();
 };
 
 export const clearFinishedTasks = () => {

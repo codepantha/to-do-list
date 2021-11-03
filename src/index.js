@@ -12,6 +12,7 @@ const enterButton = document.querySelector('.enter');
 const todoFormInput = document.querySelector('.todo-form-input');
 
 const displayTodoList = (todo) => {
+  todoListContainer.innerHTML = '';
   todo.forEach((todoItem) => {
     todoListContainer.innerHTML += `<li class='todo-item' data-id=${todoItem.index}>
       <form class='flex'>
@@ -24,14 +25,20 @@ const displayTodoList = (todo) => {
       </form>
     </li>`;
   });
+  addEventListenersToEachTodoItem();
 };
 
 todoFormInput.addEventListener('keydown', (e) => {
-  if (e.code === 'Enter') addTodo();
+  if (e.code === 'Enter') {
+    e.preventDefault();
+    addTodo();
+    displayTodoList(getTodoList());
+  }
 });
 
 enterButton.addEventListener('click', () => {
   addTodo();
+  displayTodoList(getTodoList());
 });
 
 if (!getTodoList()) {
@@ -51,37 +58,40 @@ checkboxes.forEach((checkbox) => {
 });
 
 // Input, Edit, Delete todo section
-const todoItemInputs = document.querySelectorAll('.todo-item-input');
-todoItemInputs.forEach((todoItemInput) => {
-  const ellipsis = todoItemInput.nextElementSibling;
-  const deleteIcon = todoItemInput.nextElementSibling.nextElementSibling;
-  const parentLiElement = todoItemInput.parentElement.parentElement;
-
-  todoItemInput.addEventListener('focus', () => {
-    ellipsis.style.display = 'none';
-    deleteIcon.style.display = 'block';
-    parentLiElement.style.backgroundColor = '#f7f4a8';
+function addEventListenersToEachTodoItem () {
+  const todoItemInputs = document.querySelectorAll('.todo-item-input');
+  todoItemInputs.forEach((todoItemInput) => {
+    const ellipsis = todoItemInput.nextElementSibling;
+    const deleteIcon = todoItemInput.nextElementSibling.nextElementSibling;
+    const parentLiElement = todoItemInput.parentElement.parentElement;
+  
+    todoItemInput.addEventListener('focus', () => {
+      ellipsis.style.display = 'none';
+      deleteIcon.style.display = 'block';
+      parentLiElement.style.backgroundColor = '#f7f4a8';
+    });
+  
+    todoItemInput.addEventListener('blur', () => {
+      setTimeout(() => {
+        ellipsis.style.display = 'block';
+        deleteIcon.style.display = 'none';
+      }, 300);
+  
+      parentLiElement.style.backgroundColor = '#fff';
+    });
+  
+    todoItemInput.addEventListener('input', () => {
+      const todoId = todoItemInput.dataset.id;
+      editTodo(todoId, todoItemInput);
+    });
+  
+    deleteIcon.addEventListener('click', () => {
+      const todoId = todoItemInput.dataset.id;
+      deleteTodo(todoId);
+      displayTodoList(getTodoList());
+    });
   });
-
-  todoItemInput.addEventListener('blur', () => {
-    setTimeout(() => {
-      ellipsis.style.display = 'block';
-      deleteIcon.style.display = 'none';
-    }, 300);
-
-    parentLiElement.style.backgroundColor = '#fff';
-  });
-
-  todoItemInput.addEventListener('input', () => {
-    const todoId = todoItemInput.dataset.id;
-    editTodo(todoId, todoItemInput);
-  });
-
-  deleteIcon.addEventListener('click', () => {
-    const todoId = todoItemInput.dataset.id;
-    deleteTodo(todoId);
-  });
-});
+}
 
 // remove all finished todo items
 clearButton.addEventListener('click', () => {
