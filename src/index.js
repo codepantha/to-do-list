@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import updateTaskState from './taskState';
 import {
   addTodo, editTodo, deleteTodo, clearFinishedTasks,
@@ -49,7 +50,7 @@ let savedTodoList = getTodoList();
 displayTodoList(savedTodoList);
 
 // Handle Edit, Check and Delete todo listeners
-function addEventListenersToModifyTodoEntries () {
+function addEventListenersToModifyTodoEntries() {
   const checkboxes = document.querySelectorAll('input[name="todo"]');
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
@@ -63,27 +64,27 @@ function addEventListenersToModifyTodoEntries () {
     const ellipsis = todoItemInput.nextElementSibling;
     const deleteIcon = todoItemInput.nextElementSibling.nextElementSibling;
     const parentLiElement = todoItemInput.parentElement.parentElement;
-  
+
     todoItemInput.addEventListener('focus', () => {
       ellipsis.style.display = 'none';
       deleteIcon.style.display = 'block';
       parentLiElement.style.backgroundColor = '#f7f4a8';
     });
-  
+
     todoItemInput.addEventListener('blur', () => {
       setTimeout(() => {
         ellipsis.style.display = 'block';
         deleteIcon.style.display = 'none';
       }, 300);
-  
+
       parentLiElement.style.backgroundColor = '#fff';
     });
-  
+
     todoItemInput.addEventListener('input', () => {
       const todoId = todoItemInput.dataset.id;
       editTodo(todoId, todoItemInput);
     });
-  
+
     deleteIcon.addEventListener('click', () => {
       const todoId = todoItemInput.dataset.id;
       deleteTodo(todoId);
