@@ -10,6 +10,7 @@ export const addTodo = () => {
   const savedTodoList = getTodoList();
   savedTodoList.push(todo);
   saveTodoList(savedTodoList);
+  document.querySelector('.todo-form-input').value = "";
 };
 
 export const editTodo = (todoId, todoItemInput) => {

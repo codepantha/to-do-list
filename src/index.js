@@ -48,17 +48,16 @@ if (!getTodoList()) {
 let savedTodoList = getTodoList();
 displayTodoList(savedTodoList);
 
-const checkboxes = document.querySelectorAll('input[name="todo"]');
-
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener('change', () => {
-    savedTodoList = updateTaskState(getTodoList(), checkbox.value);
-    saveTodoList(savedTodoList);
-  });
-});
-
 // Input, Edit, Delete todo section
 function addEventListenersToEachTodoItem () {
+  const checkboxes = document.querySelectorAll('input[name="todo"]');
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      savedTodoList = updateTaskState(getTodoList(), checkbox.value);
+      saveTodoList(savedTodoList);
+    });
+  });
+
   const todoItemInputs = document.querySelectorAll('.todo-item-input');
   todoItemInputs.forEach((todoItemInput) => {
     const ellipsis = todoItemInput.nextElementSibling;
@@ -96,5 +95,5 @@ function addEventListenersToEachTodoItem () {
 // remove all finished todo items
 clearButton.addEventListener('click', () => {
   clearFinishedTasks();
-  window.location.reload();
+  displayTodoList(getTodoList());
 });
