@@ -19,7 +19,7 @@ To get a local copy up and running follow these simple example steps.
 To setup the webpack project starting template in your local, in the repo page:
 click on code (dropdown list) > Download as ZIP.
 or open terminal and go to the path you want to install project and run this command <br>
-`git clone git@github.com:Code-panther/to-do-list.git`
+`git clone git@github.com:codepantherr/to-do-list.git`
 
 ### Deployment
 
@@ -31,7 +31,7 @@ To run the project open folder (after extraction) or cloning then run these comm
 
 👤 **Codepanther**
 
-- GitHub: [@Code-panther](https://github.com/Code-panther)
+- GitHub: [@Code-panther](https://github.com/codepantherr)
 - Twitter: [@codepantherr](https://twitter.com/codepantherr)
 - LinkedIn: [promise-eze](https://linkedin.com/in/promise-eze)
 
