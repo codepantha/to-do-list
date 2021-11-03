@@ -25,7 +25,7 @@ const displayTodoList = (todo) => {
       </form>
     </li>`;
   });
-  addEventListenersToEachTodoItem();
+  addEventListenersToModifyTodoEntries();
 };
 
 todoFormInput.addEventListener('keydown', (e) => {
@@ -48,8 +48,8 @@ if (!getTodoList()) {
 let savedTodoList = getTodoList();
 displayTodoList(savedTodoList);
 
-// Input, Edit, Delete todo section
-function addEventListenersToEachTodoItem () {
+// Handle Edit, Check and Delete todo listeners
+function addEventListenersToModifyTodoEntries () {
   const checkboxes = document.querySelectorAll('input[name="todo"]');
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
@@ -90,10 +90,10 @@ function addEventListenersToEachTodoItem () {
       displayTodoList(getTodoList());
     });
   });
-}
 
-// remove all finished todo items
-clearButton.addEventListener('click', () => {
-  clearFinishedTasks();
-  displayTodoList(getTodoList());
-});
+  // remove all finished todo items
+  clearButton.addEventListener('click', () => {
+    clearFinishedTasks();
+    displayTodoList(getTodoList());
+  });
+}
