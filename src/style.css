@@ -30,7 +30,7 @@ html {
 
 .todo-container {
   background: #fff;
-  width: 75%;
+  width: 85%;
   margin: 10% auto;
   border: 1px solid #ebebeb;
   box-shadow: 1px 6px 10px #a6a6a6;
@@ -38,12 +38,12 @@ html {
 }
 
 .grow {
-  width: 75%;
+  width: 85%;
   transition: width 0.3s;
 }
 
 .grow:hover {
-  width: 78%;
+  width: 90%;
 }
 
 .d-flex {
@@ -99,7 +99,7 @@ html {
 .todo-item-input {
   outline: none;
   margin-right: auto;
-  width: 80%;
+  width: 100%;
   word-wrap: break-word;
 }
 
