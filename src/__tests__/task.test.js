@@ -9,7 +9,7 @@ import updateTaskState from '../taskState';
 jest.mock('../functions');
 jest.mock('../task');
 
-describe('add and delete tasks', () => {
+describe('add, delete, update, and set status of tasks', () => {
   let todo = [];
   test('adds a single to-do item to the list', () => {
     saveTodoList(todo); // save the empty array of to-do list items
@@ -37,6 +37,16 @@ describe('add and delete tasks', () => {
     const taskAfterEdit = todo[0].description;
 
     expect(taskAfterEdit).toEqual(expect.not.stringMatching(taskBeforeEdit));
+  });
+
+  test('updates an items completed status', () => {
+    todo = getTodoList();
+    const completedStateBeforeUpdate = todo[0].completed;
+    const updatedTaskState = updateTaskState(todo, todo[0].index);
+    saveTodoList(updatedTaskState);
+    todo = getTodoList();
+    const completedStatedAfterUpdate = todo[0].completed;
+    expect(completedStateBeforeUpdate).toBe(!completedStatedAfterUpdate);
   });
 
   test('deletes a single to-do item from the list', () => {
