@@ -2,13 +2,14 @@
  * @jest-environment jsdom
  */
 
-import { deleteTodo } from '../task';
+import { editTodo, deleteTodo } from '../task';
 import { getTodoList, saveTodoList } from '../functions';
 
 jest.mock('../functions');
+jest.mock('../task');
 
 describe('add and delete tasks', () => {
-  const todo = [];
+  let todo = [];
   test('adds a single to-do item to the list', () => {
     saveTodoList(todo); // save the empty array of to-do list items
     const numberOfItemsBeforeSave = getTodoList().length;
@@ -21,6 +22,20 @@ describe('add and delete tasks', () => {
     saveTodoList(todo);
     const numberOfItemsAfterSave = getTodoList().length;
     expect(numberOfItemsAfterSave).toBe(numberOfItemsBeforeSave + 1);
+  });
+
+  test('update a single to-do item in the list', () => {
+    todo = getTodoList();
+
+    const taskBeforeEdit = todo[0].description;
+    const todoItemInput = document.createElement('span');
+    todoItemInput.innerText = 'modified task';
+    
+    editTodo(1, todoItemInput);
+    todo = getTodoList();
+    const taskAfterEdit = todo[0].description;
+
+    expect(taskAfterEdit).toEqual(expect.not.stringMatching(taskBeforeEdit));
   });
 
   test('deletes a single to-do item from the list', () => {
