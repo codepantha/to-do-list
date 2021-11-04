@@ -4,6 +4,7 @@
 
 import { deleteTodo } from '../task';
 import { getTodoList, saveTodoList } from '../functions';
+
 jest.mock('../functions');
 
 describe('add and delete tasks', () => {
