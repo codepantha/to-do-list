@@ -19,3 +19,8 @@ export const deleteTodo = (id) => {
   const filteredTodo = getTodoList().filter((todo) => todo.index !== Number(id));
   saveTodoList(reorder(filteredTodo));
 };
+
+export const clearFinishedTasks = () => {
+  const unfinishedTodo = getTodoList().filter((todo) => todo.completed !== true);
+  saveTodoList(reorder(unfinishedTodo));
+};
