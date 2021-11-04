@@ -1,4 +1,4 @@
-import { getTodoList, saveTodoList } from "../functions";
+import { getTodoList, saveTodoList } from '../functions';
 
 const reorder = (unfinishedTodo) => unfinishedTodo.map((todo, index) => {
   todo.index = index + 1;
