@@ -20,7 +20,7 @@ describe('add and delete tasks', () => {
     const numberOfItemsAfterSave = getTodoList().length;
     expect(numberOfItemsAfterSave).toBe(numberOfItemsBeforeSave + 1);
   });
-  
+
   test('deletes a single to-do item from the list', () => {
     const todo = [
       {
