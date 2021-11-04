@@ -4,6 +4,7 @@
 
 import { editTodo, deleteTodo } from '../task';
 import { getTodoList, saveTodoList } from '../functions';
+import updateTaskState from '../taskState';
 
 jest.mock('../functions');
 jest.mock('../task');
