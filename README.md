@@ -10,7 +10,7 @@ A simple to-do list application which allows users to enter tasks and mark them 
 
 ## Live Demo 🔗
 
-[Live Demo Link](https://codepantherr.github.io/to-do-list/dist)
+[Live Demo Link](https://codepantha.github.io/to-do-list/dist)
 
 To get a local copy up and running follow these simple example steps.
 
@@ -19,7 +19,7 @@ To get a local copy up and running follow these simple example steps.
 To setup the webpack project starting template in your local, in the repo page:
 click on code (dropdown list) > Download as ZIP.
 or open terminal and go to the path you want to install project and run this command <br>
-`git clone git@github.com:codepantherr/to-do-list.git`
+`git clone git@github.com:codepantha/to-do-list.git`
 
 ### Deployment
 
@@ -29,10 +29,10 @@ To run the project open folder (after extraction) or cloning then run these comm
 
 ## Author
 
-👤 **Codepanther**
+👤 **Codepantha**
 
-- GitHub: [@Code-panther](https://github.com/codepantherr)
-- Twitter: [@codepantherr](https://twitter.com/codepantherr)
+- GitHub: [@Codepantha](https://github.com/codepantha)
+- Twitter: [@codepantha](https://twitter.com/codepantha)
 - LinkedIn: [promise-eze](https://linkedin.com/in/promise-eze)
 
 ## 🤝 Contributing
